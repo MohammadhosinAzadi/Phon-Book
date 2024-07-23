@@ -137,6 +137,60 @@ let metr: Metric = 'cm';
 
 
 //nullable types
+//I didn't understand
+
+
+
+//type assertion   تاکید برای اینکه تایپ اسکریپت متوجه تایپ مورد نظر بشه
+
+// let phone = document.getElementById('phone') as HTMLLIElement;
+// phone.value;
+
+
+
+
+//unknown
+
+function unknownCheck(document: unknown) {
+    if (typeof document === 'string') {
+        console.log(document);
+        
+    }
+}
+
+unknownCheck('hey');
+
+
+
+
+//Object-Oriented Programming oop
+
+class Building {
+
+    readonly BoardOfDirector: String;
+    private _Charge: number;
+    help?: number;
+
+
+    constructor(BoardOfDirector: String, Charge: number) {
+        this.BoardOfDirector = BoardOfDirector;
+        this._Charge = Charge;
+    }
+
+    getCharge(charge: number){
+        return this._Charge += charge;
+    }
+}
+
+let build = new Building('mohammad', 15);
+build.getCharge(30);
+build.getCharge(30);
+console.log(build);
+
+
+
+
+
 
 
 
