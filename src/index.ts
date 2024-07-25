@@ -190,7 +190,110 @@ console.log(build);
 
 
 
+//dynamics propertiess
 
+class SeatAssignment {
+    [seatNumber: string]: string; //Index Signature Properties
+}
+
+let seatas = new SeatAssignment();
+
+seatas.A1 = 'mohammad';
+seatas.A2 = 'solayman';
+seatas['A3'] = 'mansoor'; 
+
+console.log(seatas);
+
+
+
+
+//static properties
+
+class Ride { 
+    private static _activeRide: number = 0;
+
+    start() {Ride._activeRide ++;}
+    stop() {Ride._activeRide --;}
+
+
+    
+    static get activeRide() {
+        return Ride._activeRide;
+    }
+
+
+    
+}
+
+class Driver extends Ride {
+
+    driverKind(kind: string) {
+        if (kind === 'I hope you have a good day sir') {
+            super.start();//redefine the method
+        }
+    }
+}
+
+
+
+let ride1 = new Ride();
+ride1.start();
+ride1.start();
+ride1.start();
+ride1.stop();
+
+let ride2 = new Ride();
+ride2.start();
+ride2.start();
+ride2.start();
+
+console.log(Ride.activeRide);
+
+let driver = new Driver();
+driver.driverKind('I hope you have a good day sir');
+driver.driverKind('I hope you have a good day sir');
+driver.driverKind('I hope you have a good day sir');
+console.log(Ride.activeRide);
+
+
+
+
+//abstract class
+
+abstract class Shape {
+    constructor(public color: string){}
+
+    abstract circumference (): void;
+}
+
+class Circle extends Shape {
+    constructor(public radious: number, color: string) {
+        super(color);
+    }
+
+    override circumference(): number {
+        return (this.radious * 2) * 3.14
+    }
+
+    shapeCir() {
+        console.log(`circumference's circle is ${this.circumference()} and color's circle is ${this.color}`);
+        
+    }
+}
+
+let shapecir = new Circle(20, 'yellow');
+console.log(shapecir.shapeCir());
+
+ 
+
+
+//generic class
+
+class KeyValue<T extends boolean | number> {
+    constructor(public key: T, public value: string) {}//Instead of using 'any'
+}
+
+let pair = new KeyValue (22, '');
 
 
 
