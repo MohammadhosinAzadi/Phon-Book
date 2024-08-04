@@ -1,151 +1,20 @@
-// import { toNamespacedPath } from 'path';
-// import data from '../phonbook.json';
 
-// interface UserPhone { 
-//     name : string;
-//     phone : string
-// }
-// const user: UserPhone[] = data;
+import { toNamespacedPath } from 'path';  
+// toNamespacedPath is the name of the function that was imported from the path module, which is one of the internal modules of Node J
 
+import * as fs from 'fs'; 
+// fs = file system , The FS module includes functions that are used for reading, writing, deleting, editing and other tasks
 
-// const searchUser: string[] = process.argv.slice(2);
+import * as path from 'path'; 
+// Enter all the contents of the path module
 
-// function searchFunction(args: string[] | undefined) {
-//     args = searchUser;
 
-//     args.forEach((name, phone) => {
-//         if (user.some((x) => x.name === name) || user.some((x) => x.phone === phone)) {
-//             console.log("Error : This information is in the phone book");
-//         }   
-//     })
 
-//     args.forEach((name, phone) => {
-//         if (!user.some((X) => X.name === name) || !user.some((X) => X.phone === phone)) {
-//             user.push({name, phone})
-            
-//         }
-//     })
-// }
+const dataPath = path.join(__dirname, '../phonbook.json');
+//Saving the path of the desired file and the path of the current directory in a variable
 
-
-// searchFunction(searchUser)
-
-
-// console.log(data);
-
-
-
-
-
-
-
-// import { toNamespacedPath } from 'path';
-// import data from '../phonbook.json';
-
-// interface UserPhone { 
-//     name: string;
-//     phone: string;
-// }
-// const user: UserPhone[] = data;
-
-// const searchUser: { name: string, phone: string }[] = process.argv.slice(2).map(arg => {
-//     const [name, phone] = arg.split(',');
-//     return { name, phone };
-// });
-
-// function searchFunction(args: { name: string, phone: string}[] | undefined) {
-//     args = searchUser;
-
-//     args.forEach(({ name, phone }) => {
-//         if (user.some((x) => x.name === name) && user.some((x) => x.phone === phone)) {
-//             console.log("Error: This information is in the phone book");
-//         } else {
-//             user.push({ name, phone });
-//         }
-//     });
-// }
-
-// searchFunction(searchUser);
-
-
-
-
-
-// console.log(data);
-
-
-
-
-
-
-
-
-
-
-// import { toNamespacedPath } from 'path';
-// import data from '../phonbook.json';
-
-// interface UserPhone { 
-//     name: string;
-//     phone: number;
-// }
-
-// const user: UserPhone[] = data.map((entry: { name: string; phone: number }) => ({
-//     name: entry.name,
-//     phone: Number(entry.phone)
-// }));
-
-// const searchUser: { name: string, phone: number }[] = process.argv.slice(2).map(arg => {
-//     const [name, phone] = arg.split(',');
-//     return { name, phone: Number(phone) };
-// });
-
-// function searchFunction(args: { name: string, phone: number }[] | undefined) {
-//     args = searchUser;
-
-//     args.forEach(({ name, phone }) => {
-//         if (user.some((x) => x.name === name) && user.some((x) => x.phone === phone)) {
-
-//             console.log("Error: This information is in the phone book");
-//             return searchFunction(searchUser);
-
-
-//         }else if (!user.some((x) => x.name === name) && typeof name === 'string') {
-//             user.push({name, phone})
-
-//         }else if (!user.some((x) => x.phone === phone) && typeof phone === 'number') {
-//             user.push({name, phone})
-//         }
-//     });
-
-    
-// }
-
-// searchFunction(searchUser);
-
-
-// console.log(user);
-
-
-
-
-
-
-
-
-
-// دلیل تغییرات کد : ذخیره ورودی 
-import { toNamespacedPath } from 'path';  // toNamespacedPath is the name of the function that was imported from the path module, which is one of the internal modules of Node JS
-
-import * as fs from 'fs'; // fs = file system , The FS module includes functions that are used for reading, writing, deleting, editing and other tasks
-
-import * as path from 'path'; // Enter all the contents of the path module
-
-
-
-const dataPath = path.join(__dirname, '../phonbook.json');//Saving the path of the desired file and the path of the current directory in a variable
-
-const rawData = fs.readFileSync(dataPath, 'utf-8');//A function of the FS module that reads the file synchronously and the program stops until the reading is finished
+const rawData = fs.readFileSync(dataPath, 'utf-8');
+//A function of the FS module that reads the file synchronously and the program stops until the reading is finished
 //'utf-8' = By using this coding, the content of the file is returned as a string
 
 const data = JSON.parse(rawData);
