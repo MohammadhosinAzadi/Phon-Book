@@ -61,4 +61,8 @@ console.log(user);
 
 //The problem with the code : The problem with the code is that it recognizes the phone type but not the name type
 
+console.log("salam");
+
+
+
 
