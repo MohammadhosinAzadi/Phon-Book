@@ -34,11 +34,9 @@ function searchFunction(args: { name: string, phone: number }[]) {
         if (userList.some((x) => x.name === name || x.phone === phone)) {
             return console.log("Error: This information is in the phone book");
 
-        } else if (!userList.some((x) => x.name === name)) {
+        } else {
+            
             userList.push({name, phone});
-
-        }else if (!userList.some((x) => x.name === name)) {
-            userList.push({name, phone});   
         }
     });
 
