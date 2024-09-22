@@ -3,7 +3,7 @@ import { UserListType } from "./mainFile";
 
 
 
-export function errorHandle(rawData: any, data: UserListType[]): void {
+export function errorHandleFileManager(rawData: any, data: UserListType[]): void {
 
     try {
         rawData;
@@ -34,4 +34,28 @@ export function errorHandle(rawData: any, data: UserListType[]): void {
         console.error("Error :Data is not array. please check the JSON structure");
     }
         
+}
+
+
+
+
+
+export function validDataUserInput(name: string, phone: number): boolean {
+    if (!name || isNaN(phone)) {
+        console.error('Error : both name and a valid phone number must be provided');
+        return false
+    }
+    return true
+}
+
+
+
+
+
+export function validDataDeleteInput(name: string): boolean {
+    if (!name) {
+        console.error('Error : a valid name must be provided for deletion.');
+        return false
+    }
+    return true
 }
