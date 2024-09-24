@@ -27,8 +27,7 @@ function addFunction(args: UserListType[]): any {
 
     args.forEach(({ name, phone }) => {
 
-        if (!validDataUserInput(name, phone))
-            return process.exit(1)
+        if (!validDataUserInput(name, phone))return;l
 
         if (userList.some((x) => x.name === name || x.phone === phone)) {
             return console.error("Error: This information is in the phone book");
@@ -47,10 +46,9 @@ function addFunction(args: UserListType[]): any {
 
 
 
-function deleteFunction(name : string): any {
+function deleteUserByName(name : string): any {
 
-    if (!validDataDeleteInput(name))
-        process.exit(1);
+    if (!validDataDeleteInput(name))return;
         
     const initialLengh = userList.length;
 
@@ -95,7 +93,7 @@ function runFunction(add: Function, remove: Function): any {
 
 runFunction(() => 
 addFunction(inputUser), () =>
-deleteFunction(deleteUser));
+deleteUserByName(deleteUser));
 
 errorHandleFileManager(rawData, data);
 console.log(userList);

@@ -9,16 +9,16 @@ export function errorHandleFileManager(rawData: any, data: UserListType[]): void
         rawData;
     } catch (error : any) {
         if (error.code === 'ENOENT') {
-            console.error("Error : the file does not exist");
-            process.exit(1)
+
+            return console.error("Error : the file does not exist");
     
         }else if (error.code === 'EACCES') {
-            console.error("Error : permission denied to read the file.");
-            process.exit(1)
+
+            return console.error("Error : permission denied to read the file.");
                     
         }else {
-            console.error("An error occurred while read the file:" ,error.message);
-            process.exit(1)
+
+            return console.error("An error occurred while read the file:" ,error.message);
             
         }
     }
@@ -27,11 +27,14 @@ export function errorHandleFileManager(rawData: any, data: UserListType[]): void
     try {
         data;
     } catch (error) {
-        console.error("Error : failed to parse JSON data . please check the JSON format.");
-        process.exit(1)
+
+        return console.error("Error : failed to parse JSON data . please check the JSON format.");
+
     }
     if (!Array.isArray(data)) {
-        console.error("Error :Data is not array. please check the JSON structure");
+
+        return console.error("Error :Data is not array. please check the JSON structure");
+        
     }
         
 }
