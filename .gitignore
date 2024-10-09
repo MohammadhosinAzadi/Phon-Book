@@ -1,3 +1,6 @@
 node_modules/
 
 phonbook.json
+family.json
+colleagues.json
+friends.json

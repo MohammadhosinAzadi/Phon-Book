@@ -5,6 +5,7 @@ import { join } from 'path';
 export interface Record {
     name: string;
     phone: number;
+    category?: string;
 }
 
 
@@ -30,39 +31,46 @@ class InvalidDataStructureError extends Error {
 }
 
 
-export const dataPath = join(__dirname, '../phonebook.json');
+export const dataPath = join(__dirname, '../');
+export const categories = ['colleagues', 'friends', 'family'];
 
-let result: Record[] = [];
-if (existsSync(dataPath)) {
-    try {
-        const rawData = readFileSync(dataPath, 'utf-8');
+let records: Record[] = [];
+
+categories.forEach(category => {
+    const filePath = join(dataPath, `${category}.json`);
+    if (existsSync(filePath)) {
         try {
-            result = JSON.parse(rawData);
+            const rawData = readFileSync(filePath, 'utf-8');
+            try {
+                const categoryRecords = JSON.parse(rawData);
+                if (!Array.isArray(categoryRecords)) {
+                    throw new InvalidDataStructureError(`Data in ${category}.json is not an array.`);
+                }
+                records = records.concat(categoryRecords);
+            } catch (e: any) {
+                throw new JSONParseError(`Failed to parse JSON data in ${category}.json.`, e);
+            }
         } catch (e: any) {
-            throw new JSONParseError('Failed to parse JSON data. Please check the JSON format.', e);
+            if (e.code === 'ENOENT') {
+                throw new FileNotFoundError(`File not found: ${filePath}`);
+            }
+            throw new Error(`Error reading file ${filePath}: ${e.message}`);
         }
-    } catch (e: any) {
-        if (e.code === 'ENOENT') {
-            throw new FileNotFoundError(`File not found: ${dataPath}`);
-        }
-        throw new Error(`Error reading file: ${e.message}`);
     }
-}
+});
 
-export const data: Record[] = result;
-
-
-if (!Array.isArray(data)) {
-    throw new InvalidDataStructureError('Data is not an array. Please check the JSON structure.');
-}
+export const data: Record[] = records;
 
 
 export function save(): void {
-    try {
-        writeFileSync(dataPath, JSON.stringify(data, null, 2), 'utf-8');
-    } catch (e: any) {
-        throw new Error(`Error writing to the data file: ${e.message}`);
-    }
+    categories.forEach(category => {
+        const filePath = join(dataPath, `${category}.json`);
+        const categoryRecords = data.filter(record => record.category === category);
+        try {
+            writeFileSync(filePath, JSON.stringify(categoryRecords, null, 2), 'utf-8');
+        } catch (e: any) {
+            throw new Error(`Error writing to ${category}.json: ${e.message}`);
+        }
+    });
 }
-
 
