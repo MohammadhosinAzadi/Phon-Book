@@ -1,6 +1,6 @@
 import { add } from "./add";
 import { remove } from "./remove";
-import { data, categories } from "./fileManager";
+import { data } from "./fileManager";
 
 
 function handler(): void {
