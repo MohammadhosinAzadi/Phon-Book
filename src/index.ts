@@ -1,21 +1,29 @@
 import { add } from "./add";
 import { remove } from "./remove";
 import { data } from "./fileManager";
+import { Command } from "commander";
 
 
-function handler(): void {
-    const operation = process.argv[2];
-    const category = process.argv[3];
-    
-    if (operation === 'add') {
-        category;
-        add();
-    } else if (operation === 'remove') {
-        return remove(); 
-    } else {
-        throw new Error('Please specify the job you want: add or remove!');
-    }
-}
+const program = new Command();
 
-handler();
-console.log(data);
+
+
+program
+  .command('add <category> <name> <phone>')
+  .description('Add a new contact')
+  .action((category, name, phone)=> {
+    add(category, name, phone);
+  });
+
+
+  program
+   .command('remove <phone>')
+   .description('Delete a contact by phone number')
+   .action((phone: string)=> {
+    remove(phone)
+   });
+
+
+   program.parse(process.argv);
+   console.log(data);
+   

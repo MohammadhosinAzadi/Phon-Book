@@ -1,7 +1,8 @@
-import { data, save } from "./fileManager";
-
-
-function validateName(name: string | undefined): string {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.add = add;
+const fileManager_1 = require("./fileManager");
+function validateName(name) {
     if (name === undefined) {
         throw new Error('The received information is not complete!');
     }
@@ -15,17 +16,15 @@ function validateName(name: string | undefined): string {
     }
     return name;
 }
-
-
-function validatePhone(phone: string): number {
-    const phoneNum = parseInt(phone)
+function validatePhone(phone) {
+    const phoneNum = parseInt(phone);
     if (phoneNum === undefined) {
         throw new Error('The received information is not complete!');
     }
     if (isNaN(phoneNum)) {
         throw new Error('Number is invalid!');
     }
-    if (data.some((record) => record.phone === phoneNum)) {
+    if (fileManager_1.data.some((record) => record.phone === phoneNum)) {
         throw new Error('Number duplicated!');
     }
     if (phone.length !== 10) {
@@ -36,25 +35,18 @@ function validatePhone(phone: string): number {
     }
     return phoneNum;
 }
-
-
-function validateCategory(category: string | undefined): string {
+function validateCategory(category) {
     const allowedCategories = ['colleagues', 'friends', 'family'];
     if (category === undefined || !allowedCategories.includes(category)) {
         throw new Error('Invalid category! Allowed categories are: colleagues, friends, or family.');
     }
     return category;
 }
-
-export function add(category:string, name:string, phone:string) : void{
-    const phoneNum = parseInt(phone)
-
+function add(category, name, phone) {
+    const phoneNum = parseInt(phone);
     const validCategory = validateCategory(category);
     const validName = validateName(name);
-    const validPhone = validatePhone(phone)
-
-    data.push({name: validName, phone: validPhone, category: validCategory});
-    
-    save();
+    const validPhone = validatePhone(phone);
+    fileManager_1.data.push({ name: validName, phone: validPhone, category: validCategory });
+    (0, fileManager_1.save)();
 }
-

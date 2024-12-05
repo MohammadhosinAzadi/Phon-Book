@@ -1,28 +1,25 @@
 import { data, save } from "./fileManager";
 
 
-function validation():number{
-    const phone = parseInt(process.argv[3])
-    if(isNaN(phone)){
-        throw new Error('Number is invalid!')
+
+function validation(phone: string): number {
+    const phoneNum = parseInt(phone, 10); 
+    if (isNaN(phoneNum)) {
+        throw new Error("Invalid phone number format");
     }
-    let index:number | undefined
-    data.find((record, i) => {
-        if(record.phone === phone){
-            index = i
-            return true
-        }
-        return false
-    })
-    if(index === undefined){
-        throw new Error('Number is not found!')
+
+    const index = data.findIndex(record => record.phone === phoneNum); 
+    if (index === -1) {
+        throw new Error("Number is not found!");
     }
-    return index
+    return index;
+}
+
+export function remove(phone: string): void {
+    const index = validation(phone);
+    data.splice(index, 1); 
+    save(); 
+    console.log(`Contact with phone number ${phone} removed successfully.`);
 }
 
 
-export function remove(): any {
-    const index = validation()
-    data.splice(index, 1)
-    save()
-}
