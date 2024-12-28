@@ -1,7 +1,5 @@
 import { data, save } from "./fileManager";
 
-
-
 function validation(phone: string): number {
     const phoneNum = parseInt(phone, 10); 
     if (isNaN(phoneNum)) {

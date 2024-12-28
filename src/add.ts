@@ -1,4 +1,6 @@
 import { data, save } from "./fileManager";
+import { availableCategories, saveCategories } from "./fileManager"
+import unauthorizedWord from "./unauthorizedWord.json"
 
 
 function validateName(name: string | undefined): string {
@@ -9,13 +11,12 @@ function validateName(name: string | undefined): string {
     if (!nameRegex.test(name)) {
         throw new Error(`There are illegal characters in the entered name. Allowed characters are English letters and blank space`);
     }
-    const unauthorizedNames = ['manager', 'admin', 'user', 'test', 'operator', 'guest'];
+    const unauthorizedNames = unauthorizedWord;
     if (unauthorizedNames.includes(name.toLocaleLowerCase())) {
         throw new Error('The entered name is not allowed, Do not use names such as manager, admin, guest, test, user etc');
     }
     return name;
 }
-
 
 function validatePhone(phone: string): number {
     const phoneNum = parseInt(phone)
@@ -37,24 +38,20 @@ function validatePhone(phone: string): number {
     return phoneNum;
 }
 
-
-function validateCategory(category: string | undefined): string {
-    const allowedCategories = ['colleagues', 'friends', 'family'];
-    if (category === undefined || !allowedCategories.includes(category)) {
-        throw new Error('Invalid category! Allowed categories are: colleagues, friends, or family.');
+function validateCategory(category: string | undefined): string | undefined {
+    if (!category) return undefined;
+    if (!availableCategories.includes(category)) {
+        availableCategories.push(category); 
+        saveCategories();
     }
     return category;
 }
 
-export function add(category:string, name:string, phone:string) : void{
-    const phoneNum = parseInt(phone)
-
-    const validCategory = validateCategory(category);
+export function add(name:string, phone:string, category?: string) : void{
     const validName = validateName(name);
-    const validPhone = validatePhone(phone)
-
+    const validPhone = validatePhone(phone);
+    const validCategory = validateCategory(category)
     data.push({name: validName, phone: validPhone, category: validCategory});
-    
     save();
 }
 

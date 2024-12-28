@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start:dev": "npx nodemon",
-    "build": "tsc --outDir build",  
+    "build": "tsc --outDir build",
     "start": "node build/index.js"
   },
   "keywords": [],
@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "commander": "^12.1.0",
+    "inquirer": "^12.3.0",
     "yargs": "^17.7.2"
   }
 }
