@@ -1,6 +1,8 @@
 import { existsSync, readFileSync, writeFileSync } from 'fs';
 import { join } from 'path';
-import { FileNotFoundError, JSONParseError, InvalidDataStructureError } from "./baseError";
+import { InvalidDataStructureError } from './Errors/InvalidDataStructure';
+import { JSONParseError } from './Errors/JSONParse';
+import { FileNotFoundError } from './Errors/FileNotFound'
 
 export interface Record {
     name: string;
@@ -24,7 +26,7 @@ if (existsSync(dataPath)) {
             }
             records = parsedData;
         } catch (e: any) {
-            throw new JSONParseError('Failed to parse JSON data in phonebook.json.', e);   
+            throw new JSONParseError('Failed to parse JSON data in phonebook.json.');   
         }
     } catch (e: any) {
         if (e.code === 'ENOENT') {
