@@ -17,9 +17,5 @@ export function validatePhone(phone: string): number {
     if (!phone.startsWith('09')) {
         throw new Error('The number you entered is not valid. Numbers must start with 09.');
     }
-    const index = data.findIndex(record => record.phone === phoneNum); 
-    if (index === -1) {
-        throw new Error("Number is not found!");
-    }
-    return index;
+    return phoneNum;
 }

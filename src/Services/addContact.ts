@@ -33,6 +33,7 @@ export const addContact = async () => {
       if (confirm.confirm) {
         add(request.name, request.phone, request.category);
         console.log('Contact added successfully!');
+        
       } else {
         console.log('Operation cancelled. You can try again.');
       }
