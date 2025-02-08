@@ -1,4 +1,5 @@
-import { data, save } from "./fileManager";
+import  save  from "./FileHandlers/save";
+import { dataPath , data } from "./fileManager"
 
 function extractionPhone(phone: string): number {
     const phoneNum = parseInt(phone)
@@ -11,13 +12,12 @@ function extractionPhone(phone: string): number {
         throw new Error("Number is not found!");
     }
     return index;
-    
 }
 
 export function remove(phone: string): void {
     const index = extractionPhone(phone);
     data.splice(index, 1); 
-    save(); 
+    save(dataPath,data); 
     console.log(`Contact with phone number ${phone} removed successfully.`);
 }
 

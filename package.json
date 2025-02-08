@@ -14,14 +14,14 @@
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^20.14.11",
+    "@types/validator": "^13.12.2",
     "nodemon": "^3.1.4",
     "rimraf": "^6.0.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.5.4"
   },
   "dependencies": {
-    "commander": "^12.1.0",
     "inquirer": "^12.3.0",
-    "yargs": "^17.7.2"
+    "validator": "^13.12.0"
   }
 }

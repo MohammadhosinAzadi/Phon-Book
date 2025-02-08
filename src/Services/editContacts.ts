@@ -1,5 +1,6 @@
 import inquirer from "inquirer";
-import { data, save } from "../fileManager";
+import { data, dataPath } from "../fileManager";
+import  save  from "../FileHandlers/save";
 
 export const editContact = async (phone: string) => {
 
@@ -42,7 +43,7 @@ export const editContact = async (phone: string) => {
         category: updatedContact.category || contact.category, 
     };
 
-    save();
+    save(dataPath, data);
 
     console.log("Contact updated successfully!");
 

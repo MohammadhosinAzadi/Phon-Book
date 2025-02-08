@@ -1,9 +1,5 @@
 import inquirer from 'inquirer';
-import { viewContacts } from './viewContacts';
-import { addContact } from './addContact';
-import { removeContact } from './removeContact';
-import { anotherRequest } from './anotherRequest';
-import { editContact } from './editContacts';
+import * as servic from './index'
 
 export const mainMenu = async () => {
     try {
@@ -17,11 +13,11 @@ export const mainMenu = async () => {
       ]);
   
       if (choice.action === 'Add a new contact') {
-        await addContact();
+        await servic.addContact();
       } else if (choice.action === 'Remove a contact') {
-        await removeContact();
+        await servic.removeContact();
       } else if (choice.action === 'View contacts') {
-        viewContacts();
+        servic.viewContacts();
       } else if (choice.action === 'Edit contacts') {
         const { phone } = await inquirer.prompt([
           {
@@ -30,12 +26,12 @@ export const mainMenu = async () => {
               message: 'Enter the phone number of the contact to edit:'
           }
       ]);
-      await editContact(phone);
+      await servic.editContact(phone);
       }else {
         process.exit(0)
       }
 
-      await anotherRequest();
+      await servic.anotherRequest();
     }catch (error: any) {
       console.error('An error occurred:', error.message);
     }

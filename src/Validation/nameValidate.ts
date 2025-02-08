@@ -1,12 +1,12 @@
 import unauthorizedWord from '../unauthorizedWord.json';
+import validator from 'validator';
 
 export function validateName(name: string | undefined): string {
     if (name === undefined) {
         throw new Error('The received information is not complete!');
     }
-    const nameRegex = /^[A-Za-z\s]+$/;
-    if (!nameRegex.test(name)) {
-        throw new Error(`There are illegal characters in the entered name. Allowed characters are English letters and blank space`);
+    if (!validator.isAlpha(name, 'en-US', { ignore: ' ' })) {
+        throw new Error("There are illegal characters in the entered name.");
     }
     const unauthorizedNames = unauthorizedWord;
     if (unauthorizedNames.includes(name.toLocaleLowerCase())) {

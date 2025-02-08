@@ -1,13 +1,12 @@
-import { data, save } from "./fileManager";
-import { validateName } from "./Validation/nameValidate";
-import { validatePhone } from "./Validation/phoneValidate";
-import { validateCategory } from "./Validation/categoryValidate";
+import { data, dataPath } from "./fileManager";
+import  save  from "./FileHandlers/save";
+import * as validate from 'Validation/index'
 
 export function add(name:string, phone:string, category?: string) : void{
-    const validName = validateName(name);
-    const validPhone = validatePhone(phone);
-    const validCategory = validateCategory(category)
+    const validName = validate.validateName(name);
+    const validPhone = validate.validatePhone(phone);
+    const validCategory = validate.validateCategory(category)
     data.push({name: validName, phone: validPhone, category: validCategory});
-    save();
+    save(dataPath, data);
 }
 
