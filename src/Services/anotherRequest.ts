@@ -8,7 +8,7 @@ export const anotherRequest = async () => {
             {
                 type : 'confirm',
                 name : 'confirm',
-                message : 'Do you have any other requests?'
+                message : 'Do you have any other requests?',
             }
         ]) 
 

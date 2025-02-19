@@ -4,7 +4,7 @@ import  save  from "../FileHandlers/save";
 
 export const editContact = async (phone: string) => {
 
-    const contactIndex = data.findIndex(contact => contact.phone === parseInt(phone, 10));
+    const contactIndex = data.findIndex(contact => contact.phone === phone);
     
     if (contactIndex === -1) {
         console.log("Contact not found!");
@@ -39,7 +39,7 @@ export const editContact = async (phone: string) => {
     data[contactIndex] = {
         ...contact,
         name: updatedContact.name,
-        phone: parseInt(updatedContact.phone, 10),
+        phone: updatedContact.phone,
         category: updatedContact.category || contact.category, 
     };
 

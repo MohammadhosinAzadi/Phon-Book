@@ -8,7 +8,7 @@ export const mainMenu = async () => {
           type: 'list',
           name: 'action',
           message: 'Select an action:',
-          choices: ['Add a new contact', 'Remove a contact', 'View contacts', 'Edit contacts', 'Exit']
+          choices: ['Add a new contact', 'Remove a contact', 'View contacts', 'Edit contacts', 'Edit category', 'Exit']
         }
       ]);
   
@@ -26,7 +26,10 @@ export const mainMenu = async () => {
               message: 'Enter the phone number of the contact to edit:'
           }
       ]);
-      await servic.editContact(phone);
+        await servic.editContact(phone);
+      
+      }else if (choice.action === 'Edit category'){
+        await servic.editCategories();  
       }else {
         process.exit(0)
       }

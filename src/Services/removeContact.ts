@@ -1,7 +1,10 @@
 import { remove } from "../remove";
 import inquirer from 'inquirer';
 
-export const removeContact = async () => {
+export const removeContact = async (): Promise<void> => {
+
+  while (true) { 
+
     try {
       const request = await inquirer.prompt([
         {
@@ -22,10 +25,16 @@ export const removeContact = async () => {
       if (confirm.confirm) {
         remove(request.phone);
         console.log('Removed successfully');
+        break;
       } else {
         console.log('Operation cancelled. You can try again.');
+        return removeContact()
       }
     } catch (error: any) {
       console.error('An error occurred:', error.message);
     }
+
+   }
+
+
   };

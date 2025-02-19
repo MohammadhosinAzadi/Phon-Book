@@ -1,6 +1,6 @@
 import { data, dataPath } from "./fileManager";
 import  save  from "./FileHandlers/save";
-import * as validate from 'Validation/index'
+import * as validate from './Validation'
 
 export function add(name:string, phone:string, category?: string) : void{
     const validName = validate.validateName(name);

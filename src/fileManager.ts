@@ -1,9 +1,9 @@
 import { join } from 'path';
-import * as fileHandler from 'FileHandlers/index'
+import * as fileHandler from './FileHandlers'
 
 export interface Record {
     name: string;
-    phone: number;
+    phone: string;
     category?: string;
 }
 
