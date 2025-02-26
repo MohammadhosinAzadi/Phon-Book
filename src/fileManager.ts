@@ -1,4 +1,6 @@
 import { join } from 'path';
+import { existsSync, mkdirSync } from 'fs';
+
 import * as fileHandler from './FileHandlers'
 
 export interface Record {
@@ -7,11 +9,21 @@ export interface Record {
     category?: string;
 }
 
-export const dataPath = join(__dirname, '../phonebook.json');
-export const categoryPath = join(__dirname, '../categories.json');
+const dataFolder = join(__dirname, '../data');
+
+if (!existsSync(dataFolder)) {
+    mkdirSync(dataFolder);
+}
+
+export const dataPath = join(dataFolder, '../data/phonebook.json');
+export const categoryPath = join(dataFolder, '../data/categories.json');
 
 export const data: Record[] = fileHandler.loadData(dataPath, []);
 export const availableCategories: string[] = fileHandler.loadData(categoryPath, []);
 
-fileHandler.save(dataPath, data)
-fileHandler.save(categoryPath, availableCategories)
+if (data.length === 0) {
+    fileHandler.save(dataPath, data); 
+}
+if (availableCategories.length === 0) {
+    fileHandler.save(categoryPath, availableCategories); 
+}

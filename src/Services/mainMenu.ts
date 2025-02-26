@@ -28,7 +28,7 @@ export const mainMenu = async () => {
       ]);
         await servic.editContact(phone);
       
-      }else if (choice.action === 'Edit category'){
+      }else if (choice.action === 'Category management'){
         await servic.editCategories();  
       }else {
         process.exit(0)

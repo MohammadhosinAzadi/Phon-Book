@@ -16,20 +16,7 @@ export const addName = async (): Promise<string> => {
 
             validateName(request.name);  
             name = request.name;  
-
-            const confirm = await inquirer.prompt([
-                {
-                    type: 'confirm',
-                    name: 'isCorrect',
-                    message: `You entered: ${name}. Is this correct?`,
-                }
-            ]);
-
-            if (confirm.isCorrect) {
-                break;  
-            } else {
-                console.log("Please enter your name again.");
-            }
+            break;
 
         } catch (error: any) {
             console.error(error.message);  

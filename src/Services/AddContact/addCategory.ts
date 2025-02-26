@@ -14,27 +14,22 @@ export const addCategory = async (): Promise<string> => {
                 }
             ]);
 
+            category = request.category.trim() === "" ? null : request.category;
+
+            if (category !== null) {
+                validateCategory(category);
+            }
+
             validateCategory(request.category);  
             category = request.category;  
-
-            const confirm = await inquirer.prompt([
-                {
-                    type: 'confirm',
-                    name: 'isCorrect',
-                    message: `You entered: ${category}. Is this correct?`,
-                }
-            ]);
-
-            if (confirm.isCorrect) {
-                break;  
-            } else {
-                console.log("Please enter your category again.");
-            }
+            break; 
 
         } catch (error: any) {
             console.error(error.message);  
         }
     }
 
-    return category;  
+    return category;
+
+    
 };

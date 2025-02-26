@@ -10,26 +10,13 @@ export const addPhone = async (): Promise<string> => {
                 {
                     type: 'input',
                     name: 'phone',
-                    message: "Enter your desired phone (10 digits - start with '09'):",
+                    message: "Enter your desired phone (11 digits - start with '09'):",
                 }
             ]);
 
             validatePhone(request.phone);  
             phone = request.phone;  
-
-            const confirm = await inquirer.prompt([
-                {
-                    type: 'confirm',
-                    name: 'isCorrect',
-                    message: `You entered: ${phone}. Is this correct?`,
-                }
-            ]);
-
-            if (confirm.isCorrect) {
-                break;  
-            } else {
-                console.log("Please enter your phone number again.");
-            }
+            break;
 
         } catch (error: any) {
             console.error(error.message);  
@@ -37,7 +24,6 @@ export const addPhone = async (): Promise<string> => {
     }
 
     return phone; 
-    // console.log("Validating phone:", phone);
 
 };
 
