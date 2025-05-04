@@ -1,4 +1,4 @@
-import { data } from '../fileManager';
+import { data } from '../../fileManager';
 import validator from 'validator';
 
 export function validatePhone(phone: string): string {

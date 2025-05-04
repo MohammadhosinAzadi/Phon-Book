@@ -1,4 +1,4 @@
-import unauthorizedWord from '../unauthorizedWord.json';
+import unauthorizedWord from '../../unauthorizedWord.json';
 import validator from 'validator';
 
 export function validateName(name: string | undefined): string {

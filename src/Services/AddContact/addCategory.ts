@@ -1,5 +1,5 @@
 import inquirer from 'inquirer';
-import { validateCategory } from '../../Validation/categoryValidate';
+import { validateCategory } from '../../JsonStorage/Validation/categoryValidate';
 
 export const addCategory = async (): Promise<string> => {
     let category: string; 

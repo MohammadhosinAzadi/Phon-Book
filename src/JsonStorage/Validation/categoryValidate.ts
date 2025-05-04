@@ -1,4 +1,4 @@
-import { availableCategories, categoryPath } from "../fileManager"
+import { availableCategories, categoryPath } from "../../fileManager"
 
 export function validateCategory(category: string | undefined): string | undefined {
     if (!category) return undefined;

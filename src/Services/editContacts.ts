@@ -1,6 +1,6 @@
 import inquirer from "inquirer";
 import { data, dataPath } from "../fileManager";
-import  save  from "../FileHandlers/save";
+import  save  from "../JsonStorage/FileHandlers/save";
 
 export const editContact = async (phone: string) => {
 

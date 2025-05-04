@@ -1,5 +1,5 @@
 import inquirer from 'inquirer';
-import { validateName } from '../../Validation/nameValidate';
+import { validateName } from '../../JsonStorage/Validation/nameValidate';
 
 export const addName = async (): Promise<string> => {
     let name: string; 

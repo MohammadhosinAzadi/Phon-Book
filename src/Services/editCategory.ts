@@ -1,6 +1,6 @@
 import inquirer from "inquirer";
 import { dataPath, categoryPath } from "../fileManager";
-import * as fileHandler from "../FileHandlers";
+import * as fileHandler from "../JsonStorage/FileHandlers";
 
 export async function editCategories() {
     try {

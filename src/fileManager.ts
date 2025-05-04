@@ -1,7 +1,7 @@
 import { join } from 'path';
 import { existsSync, mkdirSync } from 'fs';
 
-import * as fileHandler from './FileHandlers'
+import * as fileHandler from './JsonStorage/FileHandlers'
 
 export interface Record {
     name: string;
