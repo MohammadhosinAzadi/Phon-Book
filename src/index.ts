@@ -1,4 +1,8 @@
-import { mainMenu } from "./Services/mainMenu";
+import { app } from "./Query/mainMenu";
+import { databaseSetup } from "./DatabaseSetup/databaseSetup"
 
-mainMenu();
+databaseSetup()
+app();
+
+
 

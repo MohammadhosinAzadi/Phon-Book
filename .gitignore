@@ -2,8 +2,3 @@ node_modules/
 build/
 data/
 
-phonebook.json
-categories.json
-
-DBphonebook.db
-

@@ -1,7 +1,7 @@
 import inquirer from 'inquirer';
-import { validatePhone } from '../../JsonStorage/Validation/phoneValidate';
+import { validatePhone } from '../../Validation/validatePhone';
 
-export const addPhone = async (): Promise<string> => {
+export const promptAddPhone = async (): Promise<string> => {
     let phone: string; 
 
     while (true) {  

@@ -1,7 +1,7 @@
 import inquirer from "inquirer"
 import { mainMenu } from './mainMenu'
 
-export const anotherRequest = async () => {
+export const promptAnotherRequest = async () => {
 
     try {
         const question = await inquirer.prompt([

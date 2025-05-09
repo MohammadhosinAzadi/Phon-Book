@@ -1,7 +1,7 @@
-import { remove } from "../remove";
+import { removeContact } from "../Services/remove";
 import inquirer from 'inquirer';
 
-export const removeContact = async (): Promise<void> => {
+export const promptRemoveContact = async (): Promise<void> => {
 
   while (true) { 
 
@@ -23,18 +23,16 @@ export const removeContact = async (): Promise<void> => {
       ]);
   
       if (confirm.confirm) {
-        remove(request.phone);
+        removeContact(request.phone);
         console.log('Removed successfully');
         break;
       } else {
         console.log('Operation cancelled. You can try again.');
-        return removeContact()
+        return promptRemoveContact()
       }
     } catch (error: any) {
       console.error('An error occurred:', error.message);
     }
 
    }
-
-
-  };
+};

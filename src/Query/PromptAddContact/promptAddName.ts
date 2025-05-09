@@ -1,7 +1,7 @@
 import inquirer from 'inquirer';
-import { validateName } from '../../JsonStorage/Validation/nameValidate';
+import { validateName } from '../../Validation/validateName';
 
-export const addName = async (): Promise<string> => {
+export const promptAddName = async (): Promise<string> => {
     let name: string; 
 
     while (true) {  
