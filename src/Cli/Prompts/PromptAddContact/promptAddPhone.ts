@@ -1,5 +1,5 @@
 import inquirer from 'inquirer';
-import { validatePhone } from '../../Validation/validatePhone';
+import { validatePhone } from '../../../Validation/validatePhone';
 
 export const promptAddPhone = async (): Promise<string> => {
     let phone: string; 

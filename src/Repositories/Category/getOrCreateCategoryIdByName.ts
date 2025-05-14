@@ -1,4 +1,4 @@
-import { db } from '../DatabaseSetup/databaseSetup';
+import { db } from '../../DatabaseSetup/databaseSetup';
 
 export function getOrCreateCategoryIdByName(categoryName: string): Promise<number> {
   return new Promise((resolve, reject) => {

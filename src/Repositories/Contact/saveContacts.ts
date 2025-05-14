@@ -1,7 +1,7 @@
-import { db } from '../DatabaseSetup/databaseSetup';  
-import { getOrCreateCategoryIdByName } from '../DatabaseOperations/getOrCreateCategoryIdByName'; 
+import { db } from '../../DatabaseSetup/databaseSetup';  
+import { getOrCreateCategoryIdByName } from '../Category/getOrCreateCategoryIdByName'; 
 
-export async function saveContact(name: string, phone: string, category: string): Promise<void> {
+export async function saveContacts(name: string, phone: string, category: string): Promise<void> {
   try {
     const categoryId = await getOrCreateCategoryIdByName(category); 
     const sql = `INSERT INTO contacts (name, phone, category_id) VALUES (?, ?, ?)`;

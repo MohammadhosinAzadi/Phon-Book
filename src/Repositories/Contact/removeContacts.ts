@@ -1,6 +1,6 @@
-import { db } from '../DatabaseSetup/databaseSetup';
+import { db } from '../../DatabaseSetup/databaseSetup';
 
-export function removeContact(contactId: number): void {
+export function removeContacts(contactId: number): void {
   const sql = `DELETE FROM contacts WHERE id = ?`;
   db.run(sql, [contactId], (err: any) => {
     if (err) {
