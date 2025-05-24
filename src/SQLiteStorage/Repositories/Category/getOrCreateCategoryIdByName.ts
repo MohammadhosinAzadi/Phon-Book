@@ -1,16 +1,15 @@
 import { db } from '../../DatabaseSetup/databaseSetup';
 
-export function getOrCreateCategoryIdByName(categoryName: string): Promise<number> {
+export function getOrCreateCategoryIdByName(categoryName: string | undefined): Promise<number> {
   return new Promise((resolve, reject) => {
-    
+    if (!categoryName) {
+      return reject(new Error('Category name is required'));
+    }
     const trimmedName = categoryName.trim();
-
     db.get('SELECT id FROM categories WHERE name = ?', [trimmedName], (err : any, row : any) => {
       if (err) {
         reject(err); 
-      }
-
-      if (row) {
+      }else if(row) {
         resolve(row.id); 
       } else {
         db.run('INSERT INTO categories (name) VALUES (?)', [trimmedName], function (insertErr) {

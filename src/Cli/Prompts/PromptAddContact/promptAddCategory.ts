@@ -1,9 +1,8 @@
 import inquirer from 'inquirer';
-import { validateCategory } from '../../../Validation/validateCategory';
+import { getOrCreateCategoryIdByName } from "../../../SQLiteStorage/Repositories/Category/getOrCreateCategoryIdByName"
 
-export const promptAddCategory = async (): Promise<string> => {
-    let category: string; 
-
+export const promptAddCategory = async (): Promise<string | undefined> => {
+    let category: string | undefined; 
     while (true) {  
         try {
             const request = await inquirer.prompt([
@@ -13,23 +12,13 @@ export const promptAddCategory = async (): Promise<string> => {
                     message: "Enter the category you want (optional. Otherwise, skip)",
                 }
             ]);
-
             category = request.category.trim() === "" ? null : request.category;
-
-            if (category !== null) {
-                validateCategory(category);
-            }
-
-            validateCategory(request.category);  
+            getOrCreateCategoryIdByName(category); 
             category = request.category;  
             break; 
-
         } catch (error: any) {
             console.error(error.message);  
         }
     }
-
     return category;
-
-    
 };

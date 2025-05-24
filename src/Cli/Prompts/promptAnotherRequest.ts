@@ -1,16 +1,5 @@
-import inquirer from "inquirer";
 import { mainMenu } from './ActionMenu/mainMenu';
-
-const askForAnotherRequest = async (): Promise<boolean> => {
-    const { confirm } = await inquirer.prompt([
-        {
-            type: 'confirm',
-            name: 'confirm',
-            message: 'Do you have any other requests?',
-        }
-    ]);
-    return confirm;
-};
+import { promptAnotherConfirmation } from '../../Cli/Confirmations/promptAnotherConfirmation'
 
 const handleAnotherRequest = async (confirm: boolean): Promise<void> => {
     if (confirm) {
@@ -23,7 +12,7 @@ const handleAnotherRequest = async (confirm: boolean): Promise<void> => {
 
 export const promptAnotherRequest = async (): Promise<void> => {
     try {
-        const confirm = await askForAnotherRequest();
+        const confirm = await promptAnotherConfirmation();
         await handleAnotherRequest(confirm);
     } catch (error: any) {
         console.error('An error occurred:', error.message);

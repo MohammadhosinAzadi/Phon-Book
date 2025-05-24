@@ -1,7 +1,5 @@
 export const promptViewContacts = (contacts: any[]) => {
-  
   console.log("\n--- 📒 Contact List ---");
-  
   console.table(
     contacts.map((row) => ({
       Name: row.name,
@@ -9,7 +7,5 @@ export const promptViewContacts = (contacts: any[]) => {
       Category: row.category || "None",
     }))
   );
-  
   console.log("-------------------------\n");
-  
 };

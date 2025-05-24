@@ -1,30 +1,26 @@
 import validator from 'validator';
-import { db } from '../DatabaseSetup/databaseSetup'
+import { getCountPhone } from '../SQLiteStorage/Repositories/Contact/getCountPhone';
+import { currentStorage, StorageType } from "../Config/storageConfig";
+import { data } from 'JsonStorage/FileManager/initJsonData';
 
 export async function validatePhone(phone: string): Promise<string> {
-
-    phone = phone.trim()
-
-    if (!validator.matches(phone, /^09\d{9}$/)) {
-        throw new Error('The number you entered is not valid. Numbers must start with 09.');
+	if (phone === undefined) {
+		throw new Error("The received information is not complete!");
+	}
+    if (!phone.startsWith('09')) {
+        throw new Error("Phone number must start with 09.");  
     }
-
     if (!validator.isLength(phone, { min: 11, max: 11 })) {
         throw new Error('The phone number must be exactly 11 digits long');
     }
-
-    const isDuplicate = await new Promise<boolean>((resolve, reject) => {
-        db.get('SELECT COUNT(*) AS count FROM contacts WHERE phone = ?', [phone], (err: any, row: any) => {
-            if (err) {
-                reject(err);
-            }
-            resolve(row.count > 0);
-        });
-    });
-
+    let isDuplicate = false
+    if (currentStorage === StorageType.SQLITE) {
+        isDuplicate = await getCountPhone(phone)
+    } else if (currentStorage === StorageType.JSON) {
+        isDuplicate = data.some(contact => contact.phone === phone);
+    }
     if (isDuplicate) {
         throw new Error('The phone number is already registered.');
     }
-
-    return phone;
+	return phone;
 }

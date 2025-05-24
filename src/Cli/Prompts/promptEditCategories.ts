@@ -1,5 +1,5 @@
 import inquirer from "inquirer";
-import { getCategories } from "../../Repositories/Category/getCategories";
+import { getCategories } from "../../SQLiteStorage/Repositories/Category/getCategories";
 
 const fetchCategories = async (): Promise<string[]> => {
   try {
@@ -24,7 +24,6 @@ const promptCategorySelection = async (categories: string[]): Promise<string | n
       choices: [...categories, "Cancel"],
     },
   ]);
-  
   return selectedCategory === "Cancel" ? null : selectedCategory;
 };
 
@@ -43,11 +42,8 @@ const promptNewCategoryName = async (selectedCategory: string): Promise<string> 
 export const promptEditCategories = async (): Promise<{ selectedCategory: string; newCategoryName: string } | null> => {
   const categories = await fetchCategories();
   if (categories.length === 0) return null;
-
   const selectedCategory = await promptCategorySelection(categories);
   if (!selectedCategory) return null;
-
   const newCategoryName = await promptNewCategoryName(selectedCategory);
-
   return { selectedCategory, newCategoryName };
 };

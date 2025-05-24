@@ -1,5 +1,5 @@
 import { app } from "./app";
-import { databaseSetup } from "./DatabaseSetup/databaseSetup"
+import { databaseSetup } from "./SQLiteStorage/DatabaseSetup/databaseSetup"
 
 databaseSetup()
 app();

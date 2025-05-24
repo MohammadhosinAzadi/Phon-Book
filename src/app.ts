@@ -1,12 +1,10 @@
 import { mainMenu } from "./Cli/Prompts/ActionMenu/mainMenu"
-import { viewContactsController } from './Controllers/viewContactsController'
+import { promptAnotherRequest } from './Cli/Prompts/promptAnotherRequest'
 
 export function app() : void {
-
   mainMenu().then(async () => {
-    await viewContactsController();
+    await promptAnotherRequest();
   }).catch((error : any) => {
     console.log('an error occorred:', error.message);
   }) 
-
 }

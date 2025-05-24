@@ -1,7 +1,7 @@
 import { getAllContacts } from "../Repositories/Contact/getAllContacts";
-import { promptViewContacts } from "../Cli/Prompts/promptViewContacts";
+import { promptViewContacts } from "../../Cli/Prompts/promptViewContacts";
 
-export const viewContactsController = async () => {
+export const viewContactSQLite = async () => {
   try {
     const contacts = await getAllContacts();
     promptViewContacts(contacts);

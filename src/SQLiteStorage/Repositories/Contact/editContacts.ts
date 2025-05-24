@@ -9,11 +9,9 @@ export type UpdatedContact = {
 
 export const editContacts = async (originalPhone: string, updatedContact: UpdatedContact) => {
   let categoryId: number | null = null;
-
   if (updatedContact.category.trim() !== "") {
     categoryId = await getOrCreateCategoryIdByName(updatedContact.category);
   }
-
   return new Promise<void>((resolve, reject) => {
     db.run(
       `UPDATE contacts

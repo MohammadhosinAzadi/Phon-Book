@@ -1,27 +1,23 @@
 import inquirer from 'inquirer';
+import { validatePhone } from '../../Validation/validatePhone';
 
-const askPhoneNumber = async (): Promise<string | null> => {
-  try {
-    const { phone } = await inquirer.prompt([
-      {
-        type: 'input',
-        name: 'phone',
-        message: 'Enter the phone number of the contact to remove:',
-      },
-    ]);
-    return phone?.trim() || null;
-  } catch (error: any) {
-    console.error('An error occurred while getting phone number:', error.message);
-    return null;
+export const promptRemoveContact = async (): Promise<string> => {
+  while (true) {
+    try {
+      const { phone } = await inquirer.prompt([
+        {
+          type: 'input',
+          name: 'phone',
+          message: 'Enter the phone number of the contact to remove:',
+        },
+      ]);
+      const trimmedPhone = phone?.trim();
+      validatePhone(trimmedPhone); 
+      return trimmedPhone; 
+
+    } catch (error: any) {
+      console.log(error.message || 'Invalid input. Please try again.');
+    }
   }
 };
 
-const validatePhoneNumber = (phone: string | null): boolean => {
-  if (!phone) return false;
-  return true;
-};
-
-export const promptRemoveContact = async (): Promise<string | null> => {
-  const phone = await askPhoneNumber();
-  return validatePhoneNumber(phone) ? phone : null;
-};

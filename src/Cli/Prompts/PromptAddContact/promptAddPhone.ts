@@ -8,22 +8,19 @@ export const promptAddPhone = async (): Promise<string> => {
         try {
             const request = await inquirer.prompt([
                 {
-                    type: 'input',
+                	type: 'input',
                     name: 'phone',
                     message: "Enter your desired phone (11 digits - start with '09'):",
                 }
             ]);
-
-            validatePhone(request.phone);  
-            phone = request.phone;  
-            break;
-
+            validatePhone(request.phone.trim());  
+                phone = request.phone;  
+                break;
         } catch (error: any) {
             console.error(error.message);  
         }
     }
-
-    return phone; 
+	return phone; 
 
 };
 

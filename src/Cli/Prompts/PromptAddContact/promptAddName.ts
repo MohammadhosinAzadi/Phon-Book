@@ -3,7 +3,6 @@ import { validateName } from '../../../Validation/validateName';
 
 export const promptAddName = async (): Promise<string> => {
     let name: string; 
-
     while (true) {  
         try {
             const request = await inquirer.prompt([
@@ -13,11 +12,9 @@ export const promptAddName = async (): Promise<string> => {
                     message: "Enter your desired name",
                 }
             ]);
-
-            validateName(request.name);  
+            validateName(request.name.trim());  
             name = request.name;  
             break;
-
         } catch (error: any) {
             console.error(error.message);  
         }
