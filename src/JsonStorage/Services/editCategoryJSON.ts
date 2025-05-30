@@ -1,5 +1,7 @@
-import { promptEditCategories } from "Cli/Prompts/promptEditCategories";
-import { dataCategory } from "JsonStorage/FileManager/initJsonData";
+import { promptEditCategories } from "../../Cli/Prompts/promptEditCategories";
+import { dataCategory } from "../../JsonStorage/FileManager/initJsonData";
+import { saveToJSON } from "../../JsonStorage/JsonSetup/saveToJSON";
+import { categoryPath } from "../../JsonStorage/FileManager/dataPath";
 
 export async function editCategoryJSON(): Promise<void> {
     try {
@@ -17,7 +19,8 @@ export async function editCategoryJSON(): Promise<void> {
             console.log("Selected category not found.");
             return
         } 
-        dataCategory[contactIndex] = result.selectedCategory;
+        dataCategory[contactIndex] = result.newCategoryName;
+        await saveToJSON(categoryPath, dataCategory);
         console.log("Category updated successfully.");
     } catch (error : any) {
         console.error("Error editing category:", error.message || error);

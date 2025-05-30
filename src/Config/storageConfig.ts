@@ -3,5 +3,5 @@ export enum StorageType {
     SQLITE = 'sqlite'
 }
 
-export const currentStorage: StorageType = StorageType.JSON;
+export const currentStorage: StorageType = StorageType.SQLITE;
   

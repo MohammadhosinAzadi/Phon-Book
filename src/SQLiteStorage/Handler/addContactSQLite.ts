@@ -8,7 +8,7 @@ export const addContactSQLite = async (): Promise<void> => {
     const confirmed = await promptAddConfirmation(
       contact.name,
       contact.phone,
-      contact.category
+      contact.category ?? ''
     );
     if (confirmed === false) {
       console.log("Operation cancelled.");

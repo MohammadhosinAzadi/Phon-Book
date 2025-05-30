@@ -1,7 +1,7 @@
-import {fileExists} from './fileExists';
-import {readFile} from './readFile';
-import {parsJSON} from './parsJSON';
-import { InvalidDataStructureError } from "JsonStorage/Errors/InvalidDataStructureError";
+import {fileExists} from '../../JsonStorage/JsonSetup/fileExists';
+import {readFile} from '../../JsonStorage/JsonSetup/readFile';
+import {parsJSON} from '../../JsonStorage/JsonSetup/parsJSON';
+import { InvalidDataStructureError } from "../../JsonStorage/Errors/InvalidDataStructureError";
 
 export function validateIsArray(data: unknown, filePath: string): void {
     if (!Array.isArray(data)) {

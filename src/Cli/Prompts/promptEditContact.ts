@@ -1,9 +1,8 @@
 import inquirer from "inquirer";
-import { getContactByPhone } from "../../SQLiteStorage/Repositories/Contact/getContactByPhone";
-import { validatePhone } from "../../Validation/validatePhone";
+import { editValidatePhone } from "../../Validation/editValidatePhone";
 import { validateName } from "../../Validation/validateName";
 
-const getpromptPhoneNumber = async (): Promise<string | null> => {
+const getPromptPhoneNumber = async (): Promise<string | null> => {
   const { phone } = await inquirer.prompt([
     {
       type: "input",
@@ -32,7 +31,7 @@ export const getPromptUpdatedData = async (contact: any) => {
       default: contact.phone.toString(),
     },
   ]);
-  validatePhone(phone);
+  editValidatePhone(phone);
   const { category } = await inquirer.prompt([
     {
       type: "input",
@@ -41,18 +40,16 @@ export const getPromptUpdatedData = async (contact: any) => {
       default: contact.category || "",
     },
   ]);
-  const updatedData = { name, phone, category };
-  return updatedData;
+  return { name, phone, category };
 };
 
-export const promptEditContact = async (): Promise<{ phone: string; updatedData: any } | null> => {
-  const phone = await getpromptPhoneNumber();
-  if (phone === null) return null;
-  const contact = await getContactByPhone(phone);
-  if (contact === null) {
-    console.log("Contact not found!");
+export const promptEditContact = async (): Promise<string| null> => {
+  const phone = await getPromptPhoneNumber();
+  if (phone === null) {
+    console.log("No phone number entered.");
     return null;
   }
-  const updatedData = await getPromptUpdatedData(contact);
-  return { phone, updatedData };
+  return phone
 };
+
+

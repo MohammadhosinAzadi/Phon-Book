@@ -1,17 +1,20 @@
-import { promptEditContact } from "../../Cli/Prompts/promptEditContact";
+import { getContactByPhone } from "../../SQLiteStorage/Repositories/Contact/getContactByPhone";
 import { editContacts } from "../../SQLiteStorage/Repositories/Contact/editContacts";
+import { promptEditContact, getPromptUpdatedData } from "../../Cli/Prompts/promptEditContact";
 
-export const editContactSQLite = async (): Promise<void> => {
-  try {
-    const result = await promptEditContact();
-    if (!result) {
-      console.log("Operation cancelled or no contact selected.");
-      return;
-    }
-    await editContacts(result.phone, result.updatedData);
-    console.log("Contact updated successfully!");
-  } catch (error: any) {
-    console.error("Error in editing contact:", error.message);
+export const editContactSQLite = async () => {
+  const phone = await promptEditContact();
+  if (phone === null) {
+    console.log("Cancelled or no phone entered.");
+    return;
   }
+  const contact = await getContactByPhone(phone);
+  if (contact === null) {
+    console.log("Contact not found!");
+    return;
+  }
+  const updatedData = await getPromptUpdatedData(contact);
+  await editContacts(phone, updatedData);
+  console.log("Contact updated successfully!");
 };
 

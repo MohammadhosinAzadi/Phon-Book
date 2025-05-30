@@ -1,13 +1,8 @@
-import { db } from '../../DatabaseSetup/databaseSetup';  
-import { getOrCreateCategoryIdByName } from '../Category/getOrCreateCategoryIdByName'; 
+import { db } from '../../../SQLiteStorage/DatabaseSetup/databaseSetup';  
+import { getOrCreateCategoryIdByName } from '../../../SQLiteStorage/Repositories/Category/getOrCreateCategoryIdByName'; 
+import { Record } from '../../../Typs/record';
 
-type Contact = {
-  name: string;
-  phone: string;
-  category?: string;
-};
-
-export async function saveContacts(contact: Contact): Promise<void> {
+export async function saveContacts(contact: Record): Promise<void> {
   try {
     const categoryId = contact.category ? await getOrCreateCategoryIdByName(contact.category) : null;
     const sql = `INSERT INTO contacts (name, phone, category_id) VALUES (?, ?, ?)`;

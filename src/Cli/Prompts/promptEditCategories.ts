@@ -1,19 +1,29 @@
 import inquirer from "inquirer";
 import { getCategories } from "../../SQLiteStorage/Repositories/Category/getCategories";
+import { currentStorage, StorageType } from "../../Config/storageConfig";
+import { dataCategory } from "../../JsonStorage/FileManager/initJsonData";
 
-const fetchCategories = async (): Promise<string[]> => {
+const fetchCategories = async (): Promise<string[] | null> => {
   try {
-    const categories: string[] = await getCategories();
-    if (categories.length === 0) {
+    let categories;
+    if (currentStorage === StorageType.SQLITE) {
+      categories = await getCategories(); 
+    } else if (currentStorage === StorageType.JSON) {
+      categories = dataCategory;
+    } else {
+      return null;
+    }
+    if (!categories || categories.length === 0) {
       console.log("No categories found.");
-      return [];
+      return null;
     }
     return categories;
   } catch (error) {
     console.error("Error in fetching categories:", error);
-    return [];
+    return null;
   }
 };
+
 
 const promptCategorySelection = async (categories: string[]): Promise<string | null> => {
   const { selectedCategory } = await inquirer.prompt([
@@ -41,7 +51,7 @@ const promptNewCategoryName = async (selectedCategory: string): Promise<string> 
 
 export const promptEditCategories = async (): Promise<{ selectedCategory: string; newCategoryName: string } | null> => {
   const categories = await fetchCategories();
-  if (categories.length === 0) return null;
+  if (!categories || categories.length === 0) return null;
   const selectedCategory = await promptCategorySelection(categories);
   if (!selectedCategory) return null;
   const newCategoryName = await promptNewCategoryName(selectedCategory);

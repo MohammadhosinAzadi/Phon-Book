@@ -1,6 +1,6 @@
-import { db } from '../../DatabaseSetup/databaseSetup';
+import { db } from '../../../SQLiteStorage/DatabaseSetup/databaseSetup';
 
-export function getOrCreateCategoryIdByName(categoryName: string | undefined): Promise<number> {
+export function getOrCreateCategoryIdByName(categoryName: string | null): Promise<number> {
   return new Promise((resolve, reject) => {
     if (!categoryName) {
       return reject(new Error('Category name is required'));

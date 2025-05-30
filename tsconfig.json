@@ -29,7 +29,7 @@
     // "moduleDetection": "auto",                        /* Control what method is used to detect module-format JS files. */
 
     /* Modules */
-    "module": "node16",                                /* Specify what module code is generated. */
+    "module": "CommonJS",                                /* Specify what module code is generated. */
     "rootDir": "./src",                                    /* Specify the root folder within your source files. */
     // "moduleResolution": "node10",                     /* Specify how TypeScript looks up a file from a given module specifier. */
     "baseUrl": "./src",                                  /* Specify the base directory to resolve non-relative module names. */
@@ -110,3 +110,23 @@
     "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
   }
 }
+
+// {
+//   "compilerOptions": {
+//     "target": "ES2020",
+//     "module": "NodeNext",
+//     "lib": ["ES2020"],
+//     "rootDir": "./src",
+//     "outDir": "./build",
+//     "baseUrl": "./src",
+//     "moduleResolution": "NodeNext",
+//     "resolveJsonModule": true,
+//     "allowJs": true,
+//     "esModuleInterop": true,
+//     "forceConsistentCasingInFileNames": true,
+//     "strict": true,
+//     "noImplicitAny": true
+//   },
+//   "include": ["src/**/*"],
+//   "exclude": ["node_modules", "build"]
+// }

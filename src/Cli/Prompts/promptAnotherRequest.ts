@@ -1,4 +1,4 @@
-import { mainMenu } from './ActionMenu/mainMenu';
+import { mainMenu } from '../../Cli/Prompts/ActionMenu/mainMenu';
 import { promptAnotherConfirmation } from '../../Cli/Confirmations/promptAnotherConfirmation'
 
 const handleAnotherRequest = async (confirm: boolean): Promise<void> => {

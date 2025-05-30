@@ -1,4 +1,4 @@
-import { BaseError } from "JsonStorage/Errors/baseError";
+import { BaseError } from "../../JsonStorage/Errors/baseError";
  
 export class FileNotFoundError extends BaseError {
     constructor(message: string) {

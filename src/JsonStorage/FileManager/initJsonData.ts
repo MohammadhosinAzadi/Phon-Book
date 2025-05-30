@@ -1,8 +1,8 @@
-import { loadToJSON } from "JsonStorage/loadToJSON";
-import { saveToJSON } from "JsonStorage/saveToJSON";
-import { dataPath, categoryPath } from "JsonStorage/FileManager/dataPath";
-import { initDataFolder } from "JsonStorage/FileManager/initDataFolder";
-import { Record } from "JsonStorage/Typs/record";
+import { loadToJSON } from "../../JsonStorage/JsonSetup/loadToJSON";
+import { saveToJSON } from "../../JsonStorage/JsonSetup/saveToJSON";
+import { dataPath, categoryPath } from "../../JsonStorage/FileManager/dataPath";
+import { initDataFolder } from "../../JsonStorage/FileManager/initDataFolder";
+import { Record } from "../../Typs/record";
 
 initDataFolder();
 

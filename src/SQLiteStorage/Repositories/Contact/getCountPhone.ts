@@ -1,4 +1,4 @@
-import { db } from '../../DatabaseSetup/databaseSetup'
+import { db } from '../../../SQLiteStorage/DatabaseSetup/databaseSetup'
 
 export async function getCountPhone(phone: string): Promise<boolean> {
     return new Promise<boolean>((resolve, reject) => {

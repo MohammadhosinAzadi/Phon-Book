@@ -1,4 +1,4 @@
-import { db } from '../../DatabaseSetup/databaseSetup';
+import { db } from '../../../SQLiteStorage/DatabaseSetup/databaseSetup';
 
 export function removeContacts(contactId: number): void {
   const sql = `DELETE FROM contacts WHERE id = ?`;

@@ -1,15 +1,10 @@
-import { db } from "../../DatabaseSetup/databaseSetup";
-import { getOrCreateCategoryIdByName } from "../Category/getOrCreateCategoryIdByName";
+import { db } from "../../../SQLiteStorage/DatabaseSetup/databaseSetup";
+import { getOrCreateCategoryIdByName } from "../../../SQLiteStorage/Repositories/Category/getOrCreateCategoryIdByName";
+import { Record } from "../../../Typs/record";
 
-export type UpdatedContact = {
-  name: string;
-  phone: string;
-  category: string;
-};
-
-export const editContacts = async (originalPhone: string, updatedContact: UpdatedContact) => {
+export const editContacts = async (originalPhone: string, updatedContact: Record) => {
   let categoryId: number | null = null;
-  if (updatedContact.category.trim() !== "") {
+  if (updatedContact.category && updatedContact.category.trim() !== "") {
     categoryId = await getOrCreateCategoryIdByName(updatedContact.category);
   }
   return new Promise<void>((resolve, reject) => {

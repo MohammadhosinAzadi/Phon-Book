@@ -1,4 +1,4 @@
-import { getAllContacts } from "../Repositories/Contact/getAllContacts";
+import { getAllContacts } from "../../SQLiteStorage/Repositories/Contact/getAllContacts";
 import { promptViewContacts } from "../../Cli/Prompts/promptViewContacts";
 
 export const viewContactSQLite = async () => {

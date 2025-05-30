@@ -1,4 +1,4 @@
-import { db } from "../../DatabaseSetup/databaseSetup";
+import { db } from "../../../SQLiteStorage/DatabaseSetup/databaseSetup";
 
 export const updateCategoryName = (oldName: string, newName: string) => {
   return new Promise<void>((resolve, reject) => {

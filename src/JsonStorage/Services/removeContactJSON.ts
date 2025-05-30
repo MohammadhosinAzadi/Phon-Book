@@ -1,6 +1,8 @@
-import { promptRemoveConfirmation } from "Cli/Confirmations/promptRemoveConfirmation";
-import { promptRemoveContact } from "Cli/Prompts/promptRemoveContact";
-import { data } from "JsonStorage/FileManager/initJsonData";
+import { saveToJSON } from "../../JsonStorage/JsonSetup/saveToJSON";
+import { promptRemoveConfirmation } from "../../Cli/Confirmations/promptRemoveConfirmation";
+import { promptRemoveContact } from "../../Cli/Prompts/promptRemoveContact";
+import { data } from "../../JsonStorage/FileManager/initJsonData";
+import { dataPath } from "../../JsonStorage/FileManager/dataPath";
 
 export async function removeContactJSON(): Promise<void> {
     try {
@@ -16,6 +18,7 @@ export async function removeContactJSON(): Promise<void> {
             return;
         }
         data.splice(contactIndex, 1); 
+        await saveToJSON(dataPath, data)
     } catch (error : any) {
         console.error("An error occurred while removing the contact:", error.message);
     }

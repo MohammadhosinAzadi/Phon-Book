@@ -1,5 +1,5 @@
 import { readFileSync } from "fs";
-import { FileNotFoundError } from "JsonStorage/Errors/FileNotFoundError"
+import { FileNotFoundError } from "../../JsonStorage/Errors/FileNotFoundError"
 
 export function readFile(filePath: string) {
     try {

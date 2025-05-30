@@ -1,4 +1,4 @@
-import { data } from "JsonStorage/FileManager/initJsonData";
+import { data } from "../../JsonStorage/FileManager/initJsonData";
 
 export async function viewContactJSON(): Promise<void> {
   if (data.length === 0) {

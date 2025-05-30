@@ -16,17 +16,17 @@ export async function loadControllers(): Promise<Controllers> {
   let editCategoryController: () => Promise<void>;
 
   if (currentStorage === StorageType.JSON) {
-    addContactController = (await import("../JsonStorage/Services/addContactJSON.js")).addContactJSON;
-    removeContactController = (await import("../JsonStorage/Services/removeContactJSON.js")).removeContactJSON;
-    viewContactController = (await import("../JsonStorage/Services/viewContactJSON.js")).viewContactJSON;
-    editContactController = (await import("../JsonStorage/Services/editContactJSON.js")).editContactJSON;
-    editCategoryController = (await import("../JsonStorage/Services/editCategoryJSON.js")).editCategoryJSON;
+    addContactController = (await import("../JsonStorage/Services/addContactJSON")).addContactJSON;
+    removeContactController = (await import("../JsonStorage/Services/removeContactJSON")).removeContactJSON;
+    viewContactController = (await import("../JsonStorage/Services/viewContactJSON")).viewContactJSON;
+    editContactController = (await import("../JsonStorage/Services/editContactJSON")).editContactJSON;
+    editCategoryController = (await import("../JsonStorage/Services/editCategoryJSON")).editCategoryJSON;
   } else {
-    addContactController = (await import("../SQLiteStorage/Handler/addContactSQLite.js")).addContactSQLite;
-    removeContactController = (await import("../SQLiteStorage/Handler/removeContactSQLite.js")).removeContactSQLite;
-    viewContactController = (await import("../SQLiteStorage/Handler/viewContactSQLite.js")).viewContactSQLite;
-    editContactController = (await import("../SQLiteStorage/Handler/editContactSQLite.js")).editContactSQLite;
-    editCategoryController = (await import("../SQLiteStorage/Handler/editCategorySQLite.js")).editCategorySQLite;
+    addContactController = (await import("../SQLiteStorage/Handler/addContactSQLite")).addContactSQLite;
+    removeContactController = (await import("../SQLiteStorage/Handler/removeContactSQLite")).removeContactSQLite;
+    viewContactController = (await import("../SQLiteStorage/Handler/viewContactSQLite")).viewContactSQLite;
+    editContactController = (await import("../SQLiteStorage/Handler/editContactSQLite")).editContactSQLite;
+    editCategoryController = (await import("../SQLiteStorage/Handler/editCategorySQLite")).editCategorySQLite;
   }
 
   return {

@@ -1,4 +1,4 @@
-import { db } from "../../DatabaseSetup/databaseSetup";
+import { db } from "../../../SQLiteStorage/DatabaseSetup/databaseSetup";
 
 export const getContactByPhone = (phone: string): Promise<any> => {
   return new Promise((resolve, reject) => {

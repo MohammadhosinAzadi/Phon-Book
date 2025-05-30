@@ -1,4 +1,4 @@
-import { JSONParseError } from "JsonStorage/Errors/JSONParseError"
+import { JSONParseError } from "../../JsonStorage/Errors/JSONParseError"
 
 export function parsJSON(data: string) {
     try {

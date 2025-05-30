@@ -1,5 +1,5 @@
 import inquirer from 'inquirer';
-import { validatePhone } from '../../Validation/validatePhone';
+import { removeValidatePhone } from '../../Validation/removeValidatePhone';
 
 export const promptRemoveContact = async (): Promise<string> => {
   while (true) {
@@ -12,7 +12,7 @@ export const promptRemoveContact = async (): Promise<string> => {
         },
       ]);
       const trimmedPhone = phone?.trim();
-      validatePhone(trimmedPhone); 
+      removeValidatePhone(trimmedPhone); 
       return trimmedPhone; 
 
     } catch (error: any) {
