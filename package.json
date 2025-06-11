@@ -5,7 +5,8 @@
   "type": "commonjs",
   "scripts": {
     "start": "node build/index.js",
-    "dev": "ts-node src/index.ts",
+    "dev:mvc": "ts-node src/mvc/index.ts",
+    "dev:layers": "ts-node src/layers/index.ts",
     "build": "rimraf build && tsc",
     "dev:watch": "ts-node-dev src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
